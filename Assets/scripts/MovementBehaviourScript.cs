@@ -9,7 +9,7 @@ using UnityEngine;
 public class MovementBehaviourScript : MonoBehaviour
 {
     public int MonsterTick = 0; 
-    public int FakeAngle = 0;
+
     Vector3 OgPos, TrgtPos;
     private float MovTime = 0.6F;
     private bool isMoving = false;
@@ -29,7 +29,26 @@ public class MovementBehaviourScript : MonoBehaviour
             isMoving = false;
         }
 
-    //int RotDelay = 60;
+    public int FakeAngle = 0;
+    private float RotTime = 0.4F;
+    private bool isRotating = false;
+    private IEnumerator RotateCamera (float rotationY)
+        {
+            isRotating = true;
+            //Quaternion RotationQuantizer = Quaternion.AngleAxis(-90, Vector3.up);
+            float ElTime = 0;
+            Quaternion OgRot = transform.rotation;
+            Quaternion TrgtRot = Quaternion.AngleAxis (rotationY, Vector3.up);
+            while (ElTime < RotTime)
+                {
+                    transform.rotation = Quaternion.Lerp(OgRot, TrgtRot, (ElTime / RotTime));
+                    ElTime += Time.deltaTime;
+                    yield return null;
+                }
+                //NOTE: NEED TO FIX IMEPRFECT ROTATION
+                //transform.rotation *= Quaternion.AngleAxis(rotationY, Vector3.up);
+            isRotating = false;
+        }
 
     void MovementCheck ()
         {
@@ -58,29 +77,17 @@ public class MovementBehaviourScript : MonoBehaviour
                         } 
                 }
 
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && isRotating == false)
                 {
                     FakeAngle = FakeAngle -90;
-                    Quaternion rotationYa = Quaternion.AngleAxis(-1, Vector3.up);
-                    for (int rotSmooth = 0; rotSmooth < 90; rotSmooth++)
-                        {
-                            transform.rotation*= rotationYa;
-                            
-                            //await Task.Delay(RotDelay);
-                        }     
+                    StartCoroutine(RotateCamera(FakeAngle));
                     
                 }
 
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && isRotating == false)
                 {
                     FakeAngle = FakeAngle + 90;
-                    Quaternion rotationYd = Quaternion.AngleAxis(1, Vector3.up);
-                    for (int rotSmooth = 0; rotSmooth < 90; rotSmooth++)
-                        {
-                            transform.rotation*=rotationYd;
-                            
-                            //Sleep(80);
-                        }    
+                    StartCoroutine(RotateCamera(FakeAngle));
                 }
 
             if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isMoving == false)
