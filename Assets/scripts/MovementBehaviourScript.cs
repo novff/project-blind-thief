@@ -5,104 +5,121 @@ using System.Diagnostics;
 using System.Net;
 using System.Security.Cryptography;
 using UnityEngine;
-//public float smoothTime = 0.3F;
-            //private Vector3 velocity = Vector3.zero;
-            //public float PRotation = 0
-            //Vector3 rot = (0, PRotation, 0)
-public class MovementBehaviourScript : MonoBehaviour
 
+public class MovementBehaviourScript : MonoBehaviour
 {
     public int MonsterTick = 0; 
-    public int kastyl = 0;
-    //public float speed = 0.2f;
-    void Start() 
+    public int FakeAngle = 0;
+    Vector3 OgPos, TrgtPos;
+    private float MovTime = 0.6F;
+    private bool isMoving = false;
+    private IEnumerator MovePlayer (Vector3 direction)
         {
-            
+            isMoving = true;
+            float ElTime = 0;
+            OgPos = transform.position;
+            TrgtPos = OgPos + direction;
+            while (ElTime < MovTime)
+                {
+                    transform.position = Vector3.Lerp(OgPos, TrgtPos, (ElTime / MovTime));
+                    ElTime += Time.deltaTime;
+                    yield return null;
+                }
+                transform.position = TrgtPos;
+            isMoving = false;
         }
+
+    //int RotDelay = 60;
 
     void MovementCheck ()
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) 
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isMoving == false) 
                 {
                     MonsterTick++;
-                    if (kastyl == 0)
-                        {
-                            transform.position += Vector3.forward;
+                    if (FakeAngle == 0)
+                        {   
+                            StartCoroutine(MovePlayer(Vector3.forward));
                         } 
-                    if (kastyl == 90)
+                    if (FakeAngle == 90)
                         {
-                            transform.position += Vector3.right;
+                            StartCoroutine(MovePlayer(Vector3.right));
                         }
-                    if (kastyl == -90)
+                    if (FakeAngle == -90)
                         {
-                            transform.position += Vector3.left;
+                            StartCoroutine(MovePlayer(Vector3.left));
                         } 
-                    if (kastyl == 180)
+                    if (FakeAngle == 180)
                         {
-                            transform.position += Vector3.back;
+                            StartCoroutine(MovePlayer(Vector3.back));
                         } 
-                    if (kastyl == -180)
+                    if (FakeAngle == -180)
                         {
-                            transform.position += Vector3.back;
+                            StartCoroutine(MovePlayer(Vector3.back));
                         } 
                 }
 
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    kastyl = kastyl -90;
-                    Quaternion rotationYw = Quaternion.AngleAxis(-90, Vector3.up);
-                    transform.rotation*= rotationYw;     
-                    //transform.Rotate(Vector3.up, -90);
+                    FakeAngle = FakeAngle -90;
+                    Quaternion rotationYa = Quaternion.AngleAxis(-1, Vector3.up);
+                    for (int rotSmooth = 0; rotSmooth < 90; rotSmooth++)
+                        {
+                            transform.rotation*= rotationYa;
+                            
+                            //await Task.Delay(RotDelay);
+                        }     
                     
                 }
 
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    kastyl = kastyl + 90;
-                    Quaternion rotationYs = Quaternion.AngleAxis(90, Vector3.up);
-                    transform.rotation*=rotationYs; 
-                    //transform.Rotate(Vector3.up, 90);
+                    FakeAngle = FakeAngle + 90;
+                    Quaternion rotationYd = Quaternion.AngleAxis(1, Vector3.up);
+                    for (int rotSmooth = 0; rotSmooth < 90; rotSmooth++)
+                        {
+                            transform.rotation*=rotationYd;
+                            
+                            //Sleep(80);
+                        }    
                 }
 
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isMoving == false)
                 {
                     MonsterTick++;
-                    if (kastyl == 0)
+                    if (FakeAngle == 0)
                         {
-                            transform.position += Vector3.back;
+                            StartCoroutine(MovePlayer(Vector3.back));
                         } 
-                    if (kastyl == 90)
+                    if (FakeAngle == 90)
                         {
-                            transform.position += Vector3.left;
+                            StartCoroutine(MovePlayer(Vector3.left));
                         }
-                    if (kastyl == -90)
+                    if (FakeAngle == -90)
                         {
-                            transform.position += Vector3.right;
+                            StartCoroutine(MovePlayer(Vector3.right));
                         } 
-                    if (kastyl == 180)
+                    if (FakeAngle == 180)
                         {
-                            transform.position += Vector3.forward;
+                            StartCoroutine(MovePlayer(Vector3.forward));
                         } 
-                    if (kastyl == -180)
+                    if (FakeAngle == -180)
                         {
-                            transform.position += Vector3.forward;
+                            StartCoroutine(MovePlayer(Vector3.forward));
                         }
                     
                 }
         }
-
-    // Update is called once per frame
     void Update()
         {
             MovementCheck ();
-            if (kastyl == 270)
+            if (FakeAngle == 270)
                 {
-                    kastyl = -90;
+                    FakeAngle = -90;
                 }
         
-            if  (kastyl == -270)  
+            if  (FakeAngle == -270)  
                 {
-                    kastyl = 90;
+                    FakeAngle = 90;
                 }
 
         }

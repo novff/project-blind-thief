@@ -54,9 +54,9 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\MovementBehaviourScript.cs" />
     <Compile Include="Assets\scripts\TileType.cs" />
+    <Compile Include="Assets\scripts\EnemyScript.cs" />
     <Compile Include="Assets\scripts\TileGridPosition.cs" />
     <Compile Include="Assets\scripts\TileMapScript.cs" />
-    <Compile Include="Assets\scripts\EnemyScript.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Extensions.Design.xml" />
