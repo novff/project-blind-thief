@@ -8,25 +8,33 @@ using UnityEngine;
 
 public class MovementBehaviourScript : MonoBehaviour
 {
-    public int MonsterTick = 0; 
+    bool IsColliding = false;
 
-    Vector3 OgPos, TrgtPos;
-    private float MovTime = 0.6F;
+    public Vector3 PlayerOgPos, PlayerTrgtPos;
+    private float MovTime = 0.2F;
     private bool isMoving = false;
     private IEnumerator MovePlayer (Vector3 direction)
         {
-            isMoving = true;
-            float ElTime = 0;
-            OgPos = transform.position;
-            TrgtPos = OgPos + direction;
-            while (ElTime < MovTime)
+            if (IsColliding == false)
                 {
-                    transform.position = Vector3.Lerp(OgPos, TrgtPos, (ElTime / MovTime));
-                    ElTime += Time.deltaTime;
-                    yield return null;
+                    isMoving = true;
+                    float ElTime = 0;
+                    PlayerOgPos = transform.position;
+                    PlayerTrgtPos = PlayerOgPos + direction;
+                    while (ElTime < MovTime)
+                        {
+                            transform.position = Vector3.Lerp(PlayerOgPos, PlayerTrgtPos, (ElTime / MovTime));
+                            ElTime += Time.deltaTime;
+                            yield return null;
+                        }
+                    transform.position = PlayerTrgtPos;
+                    isMoving = false;
                 }
-                transform.position = TrgtPos;
-            isMoving = false;
+            else
+                {
+                    IsColliding = false;
+                }
+
         }
 
     public int FakeAngle = 0;
@@ -54,7 +62,6 @@ public class MovementBehaviourScript : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isMoving == false) 
                 {
-                    MonsterTick++;
                     if (FakeAngle == 0)
                         {   
                             StartCoroutine(MovePlayer(Vector3.forward));
@@ -92,7 +99,6 @@ public class MovementBehaviourScript : MonoBehaviour
 
             if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isMoving == false)
                 {
-                    MonsterTick++;
                     if (FakeAngle == 0)
                         {
                             StartCoroutine(MovePlayer(Vector3.back));
@@ -130,4 +136,22 @@ public class MovementBehaviourScript : MonoBehaviour
                 }
 
         }
+    void Start()
+        {
+            //GameObject WallGO = new GameObject.FindGameObjectsWithTag ("wall");
+        }
+    
+   // void OnCollisionEnter(Collision col)
+       // {
+            
+            //if(col.gameObject.WallGO == "player")
+               // {
+               //     IsColliding = true;
+               // }
+            //else
+            //    {
+              //      IsColliding = false;
+               // }
+       // }
+    
 }

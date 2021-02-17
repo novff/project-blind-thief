@@ -1,0 +1,43 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AccsMovementBehaviourScript : MonoBehaviour 
+{
+    void Start()
+        {
+        }
+}
+
+public class EnemyScript : MonoBehaviour
+{
+    public Vector3 MonsterOgPos, MonsterTrgtPos;
+    private float MovTime = 0.6F;
+    private bool isMoving = false;
+    private IEnumerator MoveMonster (Vector3 direction)
+        {
+
+        }
+
+    int MonsterTick = 0;
+    int MonsterTickAIchk = 0;
+    void AIMov()
+        {   
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+
+                MonsterTick++;
+            }
+         
+            while (MonsterTick > MonsterTickAIchk)
+                {
+                    MonsterTickAIchk++;
+                    break; 
+                }
+        }
+
+    void Update()
+        {
+            AIMov();
+        }
+}

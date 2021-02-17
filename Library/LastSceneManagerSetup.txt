@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/scripts/da prefab.unity
+- path: Assets/scripts/prefabs/da prefab.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
