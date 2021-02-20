@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileMapScript : MonoBehaviour
 {
-    public GameObject Player;
+    public GameObject CollidableSurface;
     public TileType[] tileTypes;
     int[ , ] tiles;
 
@@ -52,9 +52,9 @@ public class TileMapScript : MonoBehaviour
                     for (int z = 0; z < SizeZ; z++)
                         {
                             TileType ttype = tileTypes [tiles[x,z]];
-                            GameObject gobj =(GameObject) Instantiate(ttype.VisualTilePrefab, new Vector3(x, 0, z), Quaternion.identity);
+                            GameObject CollidableSurface=(GameObject) Instantiate(ttype.VisualTilePrefab, new Vector3(x, 0, z), Quaternion.identity);
 
-                            TileGridPosition tgpos = gobj.GetComponent<TileGridPosition>();
+                            TileGridPosition tgpos = CollidableSurface.GetComponent<TileGridPosition>();
                             tgpos.tileX = x;
                             tgpos.tileZ = z;
 

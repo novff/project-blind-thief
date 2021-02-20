@@ -253,9 +253,6 @@
     <Reference Include="UnityEditor">
       <HintPath>F:\unity hub\versions\2020.1.4f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="YamlDotNet">
-      <HintPath>Assets\Ludiq\Assemblies\YamlDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>

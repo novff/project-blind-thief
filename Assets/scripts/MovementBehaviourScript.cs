@@ -125,6 +125,7 @@ public class MovementBehaviourScript : MonoBehaviour
     void Update()
         {
             MovementCheck ();
+            
             if (FakeAngle == 270)
                 {
                     FakeAngle = -90;
@@ -138,20 +139,20 @@ public class MovementBehaviourScript : MonoBehaviour
         }
     void Start()
         {
-            //GameObject WallGO = new GameObject.FindGameObjectsWithTag ("wall");
         }
     
-   // void OnCollisionEnter(Collision col)
-       // {
-            
-            //if(col.gameObject.WallGO == "player")
-               // {
-               //     IsColliding = true;
-               // }
-            //else
-            //    {
-              //      IsColliding = false;
-               // }
-       // }
+    void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.tag == "wall")
+                {
+                    
+                    IsColliding = true;
+                    UnityEngine.Debug.Log("Do something here");
+                }
+            else
+                {
+                    IsColliding = false;
+                }
+        }
     
 }

@@ -52,73 +52,13 @@
     <UnityVersion>2020.1.4f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\MovementBehaviourScript.cs" />
-    <Compile Include="Assets\scripts\TileType.cs" />
-    <Compile Include="Assets\scripts\TileGridPosition.cs" />
-    <Compile Include="Assets\scripts\TileMapScript.cs" />
+    <Compile Include="Assets\Scripts\MovementBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\TileType.cs" />
+    <Compile Include="Assets\Scripts\TileGridPosition.cs" />
+    <Compile Include="Assets\Scripts\TileMapScript.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Extensions.Design.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\Microsoft.Build.Engine.xml" />
-     <None Include="Assets\Ludiq\Bolt\Documentation\0. READ ME FIRST.txt" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\mscorlib.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Security.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\Microsoft.Build.Framework.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Core.xml" />
-     <None Include="Assets\Ludiq\Assemblies\sqlite3.dll" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Routing.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.DirectoryServices.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Configuration.Install.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.Entity.Design.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.ServiceModel.Web.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Entity.Design.xml" />
      <None Include="Assets\Thirdparty\Kevin Iglesias\3DCharacterDummy\Readme.txt" />
-     <None Include="Assets\Ludiq\Assemblies\YamlDotNet.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Printing.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Management.Instrumentation.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.Services.Client.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.Services.Design.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Runtime.Remoting.xml" />
-     <None Include="Assets\Ludiq\Bolt\LICENSES.txt" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Xml.Linq.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\Microsoft.Build.Utilities.v3.5.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\Microsoft.Build.Conversion.v3.5.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Management.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Configuration.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Messaging.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.AddIn.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.Linq.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.DynamicData.Design.xml" />
-     <None Include="Assets\Ludiq\Assemblies\YamlDotNet.dll" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Extensions.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.DynamicData.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.ServiceProcess.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.EnterpriseServices.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.IdentityModel.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\Microsoft.VisualC.STLCLR.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.ServiceModel.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Deployment.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Transactions.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Windows.Forms.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.Services.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.DataSetExtensions.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Runtime.Serialization.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Services.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.WorkflowServices.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.AddIn.Contract.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.DirectoryServices.AccountManagement.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Runtime.Serialization.Formatters.Soap.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.Entity.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.ComponentModel.DataAnnotations.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Abstractions.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Web.Entity.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Drawing.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Net.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Data.SqlXml.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Windows.Presentation.xml" />
-     <None Include="Assets\Ludiq\Ludiq.Core\DotNetDocumentation\System.Xml.xml" />
     <Reference Include="UnityEngine">
       <HintPath>F:\unity hub\versions\2020.1.4f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -307,9 +247,6 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>F:\unity hub\versions\2020.1.4f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet">
-      <HintPath>Assets\Ludiq\Assemblies\YamlDotNet.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
