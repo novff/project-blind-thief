@@ -94,7 +94,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: 3}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-392946823158996343
 MonoBehaviour:
@@ -108,3 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e717eb327475a3846b144b8a1c1c6e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 0
+  tileZ: 0
