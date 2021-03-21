@@ -9,13 +9,30 @@ using UnityEngine;
 public class MovementBehaviourScript : MonoBehaviour
 {
 //smooth movement coroutine and variables
-    bool IsColliding = false;
-    public Vector3 PlayerOgPos, PlayerTrgtPos, RcColDir;
+    bool IsCollidingForward = false;
+    bool IsCollidingBack = false;
+    public Vector3 PlayerOgPos, PlayerTrgtPos, RcColDir, direction;
     private float MovTime = 0.2F;
     private bool isMoving = false;
-    private IEnumerator MovePlayer (Vector3 direction)
+    private IEnumerator MovePlayerForward (Vector3 direction)
         {
-            if (IsColliding == false)
+
+            RaycastHit hit;
+            Ray ColRay = new Ray(transform.position,  direction);
+            if (Physics.Raycast(ColRay, out hit, 0.5F))
+                {
+                    if (hit.collider.gameObject.name == "Wall(Clone)")
+                        {
+                            IsCollidingForward = true;
+                            UnityEngine.Debug.Log("дада коллизия");
+                        }
+                    else
+                        {
+                            IsCollidingForward = false;
+                            UnityEngine.Debug.Log("нене не коллизия");
+                        }
+                }
+            if (IsCollidingForward == false)
                 {
                     isMoving = true;
                     float ElTime = 0;
@@ -27,7 +44,6 @@ public class MovementBehaviourScript : MonoBehaviour
                             ElTime += Time.deltaTime;
                             yield return null;
                         }
-//transition transform to fix imperfect position after smooth movement while cycle
                     transform.position = PlayerTrgtPos;
                     isMoving = false;
                 }
@@ -62,34 +78,34 @@ public class MovementBehaviourScript : MonoBehaviour
                 {
                     if (FakeAngle == 0)
                         {   
-                            StartCoroutine(MovePlayer(Vector3.forward));
+                            StartCoroutine(MovePlayerForward(Vector3.forward));
                         } 
                     if (FakeAngle == 90)
                         {
-                            StartCoroutine(MovePlayer(Vector3.right));
+                            StartCoroutine(MovePlayerForward(Vector3.right));
                         }
                     if (FakeAngle == -90)
                         {
-                            StartCoroutine(MovePlayer(Vector3.left));
+                            StartCoroutine(MovePlayerForward(Vector3.left));
                         } 
                     if (FakeAngle == 180)
                         {
-                            StartCoroutine(MovePlayer(Vector3.back));
+                            StartCoroutine(MovePlayerForward(Vector3.back));
                         } 
                     if (FakeAngle == -180)
                         {
-                            StartCoroutine(MovePlayer(Vector3.back));
+                            StartCoroutine(MovePlayerForward(Vector3.back));
                         } 
                 }
             if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && isRotating == false)
                 {
                     FakeAngle = FakeAngle -90;
                     StartCoroutine(RotateCamera(FakeAngle));
-                    
                 }
 
             if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && isRotating == false)
                 {
+                    StartCoroutine(MovePlayerForward(Vector3.zero));
                     FakeAngle = FakeAngle + 90;
                     StartCoroutine(RotateCamera(FakeAngle));
                 }
@@ -99,55 +115,30 @@ public class MovementBehaviourScript : MonoBehaviour
 
                     if (FakeAngle == 0)
                         {
-                            StartCoroutine(MovePlayer(Vector3.back));
+                            StartCoroutine(MovePlayerForward(Vector3.back));
                         } 
                     if (FakeAngle == 90)
                         {
-                            StartCoroutine(MovePlayer(Vector3.left));
+                            StartCoroutine(MovePlayerForward(Vector3.left));
                         }
                     if (FakeAngle == -90)
                         {
-                            StartCoroutine(MovePlayer(Vector3.right));
+                            StartCoroutine(MovePlayerForward(Vector3.right));
                         } 
                     if (FakeAngle == 180)
                         {
-                            StartCoroutine(MovePlayer(Vector3.forward));
+                            StartCoroutine(MovePlayerForward(Vector3.forward));
                         } 
                     if (FakeAngle == -180)
                         {
-                            StartCoroutine(MovePlayer(Vector3.forward));
+                            StartCoroutine(MovePlayerForward(Vector3.forward));
                         }
-                    
                 }
         }
-//im using raycast collision check because unity rigidbody is a gimmickful piece of shit which cant really be used for movement prevention
+//im using raycast collision check because unity rigidbody is a gimmickful piece of crap which cant really be used for movement prevention mechanism i've got
     void CollisionCheck()
         {
-            RaycastHit hit;
-            Ray ColRay = new Ray(PlayerOgPos,  RcColDir);
-            Ray ColRayBack = new Ray(PlayerOgPos,  -RcColDir);
-            if (Physics.Raycast(ColRay, out hit, 0.5F))
-                {
-                    if (hit.collider.gameObject.name == "Wall(Clone)")
-                        {
-                            IsColliding = true;
-                        }
-                    else
-                        {
-                            IsColliding = false;
-                        }
-                }
-            if (Physics.Raycast(ColRayBack, out hit, 0.5F))
-                {
-                    if (hit.collider.gameObject.name == "Wall(Clone)")
-                        {
-                            IsColliding = true;
-                        }
-                    else
-                        {
-                            IsColliding = false;
-                        }
-                }
+            
         }
 //this one updates every frame and calls for movement voids
     void Update()
@@ -174,7 +165,6 @@ public class MovementBehaviourScript : MonoBehaviour
                         RcColDir = Vector3.back; 
                     }
 //using void calls to make it easier
-            CollisionCheck ();
             MovementCheck ();
 //fake angle reset for better management
             if (FakeAngle == 270)

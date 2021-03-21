@@ -61,8 +61,4 @@ public class TileMapScript : MonoBehaviour
                         }
                 }
     }
-    public void MovePlayerTo (int x, int y) 
-    {
-
-    }
 }
