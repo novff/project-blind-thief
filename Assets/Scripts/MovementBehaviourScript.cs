@@ -9,30 +9,26 @@ using UnityEngine;
 public class MovementBehaviourScript : MonoBehaviour
 {
 //smooth movement coroutine and variables
-    bool IsCollidingForward = false;
-    bool IsCollidingBack = false;
+    bool IsColliding = false;
     public Vector3 PlayerOgPos, PlayerTrgtPos, RcColDir, direction;
     private float MovTime = 0.2F;
     private bool isMoving = false;
     private IEnumerator MovePlayerForward (Vector3 direction)
         {
-
             RaycastHit hit;
             Ray ColRay = new Ray(transform.position,  direction);
             if (Physics.Raycast(ColRay, out hit, 0.5F))
                 {
                     if (hit.collider.gameObject.name == "Wall(Clone)")
                         {
-                            IsCollidingForward = true;
-                            UnityEngine.Debug.Log("дада коллизия");
+                            IsColliding = true;
                         }
                     else
                         {
-                            IsCollidingForward = false;
-                            UnityEngine.Debug.Log("нене не коллизия");
+                            IsColliding = false;
                         }
                 }
-            if (IsCollidingForward == false)
+            if (IsColliding == false)
                 {
                     isMoving = true;
                     float ElTime = 0;
@@ -134,11 +130,6 @@ public class MovementBehaviourScript : MonoBehaviour
                             StartCoroutine(MovePlayerForward(Vector3.forward));
                         }
                 }
-        }
-//im using raycast collision check because unity rigidbody is a gimmickful piece of crap which cant really be used for movement prevention mechanism i've got
-    void CollisionCheck()
-        {
-            
         }
 //this one updates every frame and calls for movement voids
     void Update()

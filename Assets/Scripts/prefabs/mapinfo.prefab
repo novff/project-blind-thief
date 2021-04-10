@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d191f64985f0cea42a5242a11f9a6f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  CollidableSurface: {fileID: 0}
   tileTypes:
   - walkable: 1
     name: floor
@@ -57,3 +57,5 @@ MonoBehaviour:
   - walkable: 1
     name: Abyss
     VisualTilePrefab: {fileID: 3863847946719895495, guid: c0a32b0026cf43049934a650e8ccb539, type: 3}
+  startTile: {x: 0, y: 0, z: 2.02}
+  PlayerInstanceSpawn: {fileID: 8777181373463224233, guid: 9ab9bcbd60bf7ab439cf56e7650b484f, type: 3}

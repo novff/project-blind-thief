@@ -6,9 +6,4 @@ public class TileGridPosition : MonoBehaviour
 {
     public int tileX;
     public int tileZ;
-
-    void Update()
-        {
-
-        }
 }

@@ -7,6 +7,8 @@ public class TileMapScript : MonoBehaviour
     public GameObject CollidableSurface;
     public TileType[] tileTypes;
     int[ , ] tiles;
+    public Vector3 startTile;
+    public GameObject PlayerInstanceSpawn;
 
 
     int SizeX = 30;
@@ -14,6 +16,7 @@ public class TileMapScript : MonoBehaviour
 
     void Start ()
         {
+            startTile = transform.position;
             //map allocation
             tiles = new int [SizeX,SizeZ];
             //map initialization
