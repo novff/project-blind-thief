@@ -5,13 +5,37 @@ using System.Diagnostics;
 using System.Net;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MovementBehaviourScript : MonoBehaviour
 {
+    private IEnumerator CheckTheFloor (Vector3 downVector)
+    {
+        RaycastHit Shit;
+        Ray LoadNextLvlRay = new Ray(transform.position,  downVector);
+        if (Physics.Raycast(LoadNextLvlRay, out Shit, 2F))
+            {
+                UnityEngine.Debug.Log("aaaaaaa");
+                if (Shit.collider.gameObject.name == "End(Clone)")
+                    {
+                        UnityEngine.Debug.Log("bbbbbbb");
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                        yield return null;
+                    }
+                if (Shit.collider.gameObject.name == "Abyss(Clone)")
+                    {
+                        UnityEngine.Debug.Log("bbbbbbb");
+                        //ПОЧЕМУ ЭТА ЕБАНАЯ ХУЙНЯ НЕ РАБОТАЕТ БЛЯИТЬ СУККА БЫОВШПОЫВЛЗАОРГШЩРКАМКАМ
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                        yield return null;
+                    }
+            }
+    }
 //smooth movement coroutine and variables
     bool IsColliding = false;
     public Vector3 PlayerOgPos, PlayerTrgtPos, RcColDir, direction;
-    private float MovTime = 0.2F;
+    private float MovTime = 0.5F;
     private bool isMoving = false;
     private IEnumerator MovePlayerForward (Vector3 direction)
         {
@@ -22,6 +46,7 @@ public class MovementBehaviourScript : MonoBehaviour
                     if (hit.collider.gameObject.name == "Wall(Clone)")
                         {
                             IsColliding = true;
+                            FindObjectOfType<AudioManager>().Play("HeadWall");
                         }
                     else
                         {
@@ -70,8 +95,14 @@ public class MovementBehaviourScript : MonoBehaviour
 //fake angle is a workaround for afaik no way to get transfrom.rotation in a useable way
     void MovementCheck ()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isMoving == false) 
                 {
+                    FindObjectOfType<AudioManager>().Play("PlayerStep");
+                    StartCoroutine(CheckTheFloor(Vector3.down));
                     if (FakeAngle == 0)
                         {   
                             StartCoroutine(MovePlayerForward(Vector3.forward));
@@ -95,20 +126,20 @@ public class MovementBehaviourScript : MonoBehaviour
                 }
             if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && isRotating == false)
                 {
+                    StartCoroutine(CheckTheFloor(Vector3.down));
                     FakeAngle = FakeAngle -90;
                     StartCoroutine(RotateCamera(FakeAngle));
                 }
-
             if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && isRotating == false)
                 {
-                    StartCoroutine(MovePlayerForward(Vector3.zero));
+                    StartCoroutine(CheckTheFloor(Vector3.down));
                     FakeAngle = FakeAngle + 90;
                     StartCoroutine(RotateCamera(FakeAngle));
                 }
-
             if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isMoving == false)
                 {
-
+                    FindObjectOfType<AudioManager>().Play("PlayerStep");
+                    StartCoroutine(CheckTheFloor(Vector3.down));
                     if (FakeAngle == 0)
                         {
                             StartCoroutine(MovePlayerForward(Vector3.back));
@@ -155,7 +186,6 @@ public class MovementBehaviourScript : MonoBehaviour
                     {
                         RcColDir = Vector3.back; 
                     }
-//using void calls to make it easier
             MovementCheck ();
 //fake angle reset for better management
             if (FakeAngle == 270)

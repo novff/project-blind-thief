@@ -40,9 +40,11 @@
      <Compile Include="Assets\Scripts\TileType.cs" />
      <Compile Include="Assets\Scripts\TileGridPosition.cs" />
      <Compile Include="Assets\Levels\Level1\TMSLevel1.cs" />
+     <Compile Include="Assets\Levels\Menu\PauseMenuBehaviour.cs" />
      <Compile Include="Assets\Levels\Menu\MenuBehaviour.cs" />
      <Compile Include="Assets\Scripts\TileMapScript.cs" />
-     <Compile Include="Assets\Levels\Menu\PauseMenuBehaviour.cs" />
+     <Compile Include="Assets\Scripts\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\Sound.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
